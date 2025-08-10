@@ -27,6 +27,17 @@ import Script from "next/script";
 // Owner: Hisham Alhussain
 // ----------
 
+type Repo = {
+  id: number;
+  name: string;
+  html_url: string;
+  description: string | null;
+  stargazers_count: number;
+  language: string | null;
+  fork: boolean;
+  pushed_at: string; // ISO timestamp
+};
+
 const NAV = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
@@ -130,13 +141,13 @@ const TESTIMONIALS = [
 ];
 
 function useReveal() {
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
   useEffect(() => {
     if (isInView) controls.start({ opacity: 1, y: 0, transition: { duration: 0.6 } });
   }, [isInView, controls]);
-  return { ref, controls, isInView };
+  return { ref, controls };
 }
 
 function Section({
@@ -152,7 +163,7 @@ function Section({
   return (
     <motion.section
       id={id}
-      ref={ref as any}
+      ref={ref}
       initial={{ opacity: 0, y: 12 }}
       animate={controls}
       className={`mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 ${className}`}
@@ -284,7 +295,7 @@ const Experience = () => (
 );
 
 function GitHubRepos({ username = "hisham8383" }: { username?: string }) {
-  const [repos, setRepos] = useState<any[]>([]);
+  const [repos, setRepos] = useState<Repo[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -296,18 +307,21 @@ function GitHubRepos({ username = "hisham8383" }: { username?: string }) {
           headers: { Accept: "application/vnd.github+json" },
         });
         if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
-        const data = await res.json();
-        const filtered = (data || [])
-          .filter((r: any) => !r.fork)
+        const data = (await res.json()) as Repo[];
+
+        const filtered = data
+          .filter((r) => !r.fork)
           .sort(
-            (a: any, b: any) =>
+            (a, b) =>
               b.stargazers_count - a.stargazers_count ||
               new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
           )
           .slice(0, 6);
+
         setRepos(filtered);
-      } catch (e: any) {
-        setError(e?.message || "Failed to load repositories.");
+      } catch (e: unknown) {
+        const message = e instanceof Error ? e.message : "Failed to load repositories.";
+        setError(message);
       }
     })();
     return () => controller.abort();
@@ -337,7 +351,7 @@ function GitHubRepos({ username = "hisham8383" }: { username?: string }) {
 
   return (
     <div className="grid gap-6 sm:grid-cols-2">
-      {repos.map((r: any) => (
+      {repos.map((r) => (
         <Card key={r.id} className="group border-muted/60 transition hover:shadow-md">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
@@ -531,7 +545,7 @@ export default function Page() {
           if (entry.isIntersecting) {
             if (link) link.removeAttribute("aria-current");
             const btn = Array.from(document.querySelectorAll("nav button")).find(
-              (b) => (b as HTMLButtonElement).textContent === NAV.find((n) => n.id === entry.target.id)?.label
+              (b) => (b as HTMLButtonElement).textContent === NAV.find((n) => n.id === (entry.target as HTMLElement).id)?.label
             );
             if (btn) btn.setAttribute("aria-current", "page");
           }
