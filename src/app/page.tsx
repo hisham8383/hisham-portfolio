@@ -1,3 +1,4 @@
+// src/app/page.tsx
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -20,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Script from "next/script";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 // ----------
 // Modern portfolio – Next.js (App Router) + Tailwind + shadcn/ui + Framer Motion
@@ -173,6 +175,44 @@ function Section({
   );
 }
 
+const Header = () => {
+  const onClick = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  return (
+    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <a href="#" className="font-semibold tracking-tight">
+          Hisham Alhussain
+        </a>
+
+        {/* Desktop nav + Theme toggle */}
+        <nav className="hidden items-center gap-4 md:flex">
+          {NAV.map((n) => (
+            <button
+              key={n.id}
+              onClick={() => onClick(n.id)}
+              className="text-sm text-muted-foreground transition hover:text-foreground"
+            >
+              {n.label}
+            </button>
+          ))}
+          <ThemeToggle />
+        </nav>
+
+        {/* Mobile: toggle + Contact shortcut */}
+        <div className="md:hidden flex items-center gap-3">
+          <ThemeToggle />
+          <a href="#contact" className="text-sm underline underline-offset-4">
+            Contact
+          </a>
+        </div>
+      </div>
+    </header>
+  );
+};
+
 const Hero = () => (
   <section className="relative overflow-hidden">
     <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background to-muted/40" />
@@ -231,7 +271,9 @@ const About = () => (
         <p className="mb-4 text-muted-foreground">
           I’m a computer science graduate focused on state-of-the-art AI, ML, and LLM applications. I design systems end-to-end: ingestion, modeling, retrieval, UX, and ops. Recently I’ve been building domain-tuned assistants and data platforms for the NEOM ecosystem.
         </p>
-        <p className="text-muted-foreground">Outside work, I write about practical AI patterns and experiment with multi-agent workflows for data teams.</p>
+        <p className="text-muted-foreground">
+          Outside work, I write about practical AI patterns and experiment with multi-agent workflows for data teams.
+        </p>
       </div>
       <Card>
         <CardHeader>
@@ -496,36 +538,6 @@ const Contact = () => (
   </Section>
 );
 
-const Header = () => {
-  const onClick = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-  return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#" className="font-semibold tracking-tight">
-          Hisham.dev
-        </a>
-        <nav className="hidden gap-6 md:flex">
-          {NAV.map((n) => (
-            <button
-              key={n.id}
-              onClick={() => onClick(n.id)}
-              className="text-sm text-muted-foreground transition hover:text-foreground"
-            >
-              {n.label}
-            </button>
-          ))}
-        </nav>
-        <a href="#contact" className="md:hidden text-sm underline underline-offset-4">
-          Contact
-        </a>
-      </div>
-    </header>
-  );
-};
-
 const Footer = () => (
   <footer className="border-t py-10 text-center text-sm text-muted-foreground">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -545,7 +557,9 @@ export default function Page() {
           if (entry.isIntersecting) {
             if (link) link.removeAttribute("aria-current");
             const btn = Array.from(document.querySelectorAll("nav button")).find(
-              (b) => (b as HTMLButtonElement).textContent === NAV.find((n) => n.id === (entry.target as HTMLElement).id)?.label
+              (b) =>
+                (b as HTMLButtonElement).textContent ===
+                NAV.find((n) => n.id === (entry.target as HTMLElement).id)?.label
             );
             if (btn) btn.setAttribute("aria-current", "page");
           }
