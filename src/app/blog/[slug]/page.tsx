@@ -1,3 +1,5 @@
+// src/app/blog/[slug]/page.tsx
+import React from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { posts, type BlogPostMeta } from "../page";
@@ -19,8 +21,8 @@ const contentBySlug: Record<string, React.ReactNode> = {
   "hardening-ml-delivery": (
     <>
       <p className="mb-4">
-        Shipping ML means boring engineering: CI/CD, data contracts, and explicit ownership.
-        The trick is to do it without slowing down discovery work.
+        Shipping ML means boring engineering: CI/CD, data contracts, and explicit ownership—
+        without killing discovery work.
       </p>
       <ul className="list-disc ml-6 space-y-2">
         <li>Separate labs vs. production repos; promote via PRs with checks.</li>
@@ -35,10 +37,13 @@ export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const meta = posts.find((p) => p.slug === params.slug);
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const meta = posts.find((p) => p.slug === slug);
   if (!meta) return {};
-  const base = "https://www.hisham-alhussain.com"; // update if you use apex/no-www
+  const base = "https://www.hisham-alhussain.com"; // adjust if using apex
   return {
     title: `${meta.title} · Hisham Alhussain`,
     description: meta.summary,
@@ -48,12 +53,16 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       title: meta.title,
       description: meta.summary,
       url: `${base}/blog/${meta.slug}`,
+      images: [{ url: `/api/og?title=${encodeURIComponent(meta.title)}` }],
     },
   };
 }
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const meta: BlogPostMeta | undefined = posts.find((p) => p.slug === params.slug);
+export default async function BlogPost(
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
+  const meta: BlogPostMeta | undefined = posts.find((p) => p.slug === slug);
   if (!meta) return notFound();
 
   return (
