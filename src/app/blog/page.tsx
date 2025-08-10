@@ -1,28 +1,18 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { posts } from "@/content/posts";
 
-export type BlogPostMeta = {
-  slug: string;
-  title: string;
-  date: string;        // YYYY-MM-DD
-  summary: string;
+export const metadata: Metadata = {
+  title: "Writing · Hisham Alhussain",
+  description: "Articles and notes on GenAI, RAG, and shipping production-grade AI/ML systems.",
+  alternates: { canonical: "https://www.hisham-alhussain.com/blog" },
+  openGraph: {
+    type: "website",
+    title: "Writing · Hisham Alhussain",
+    url: "https://www.hisham-alhussain.com/blog",
+  },
 };
-
-export const posts: BlogPostMeta[] = [
-  {
-    slug: "rag-guardrails",
-    title: "RAG beyond the hype: production guardrails",
-    date: "2025-07-28",
-    summary:
-      "A playbook for evaluation, retrieval quality, and observability when LLMs meet enterprise data.",
-  },
-  {
-    slug: "hardening-ml-delivery",
-    title: "From notebooks to platforms: hardening ML delivery",
-    date: "2025-05-14",
-    summary: "Pipelines, CI/CD, and model governance without slowing teams down.",
-  },
-];
 
 export default function BlogIndex() {
   return (
@@ -33,7 +23,10 @@ export default function BlogIndex() {
           <Card key={p.slug} className="border-muted/60">
             <CardHeader>
               <CardTitle>
-                <Link href={`/blog/${p.slug}`} className="underline decoration-primary/30 underline-offset-8 hover:no-underline">
+                <Link
+                  href={`/blog/${p.slug}`}
+                  className="underline decoration-primary/30 underline-offset-8 hover:no-underline"
+                >
                   {p.title}
                 </Link>
               </CardTitle>

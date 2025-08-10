@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { posts } from "./blog/page";
+import { posts } from "@/content/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.hisham-alhussain.com"; // adjust if using apex
+  const base = "https://www.hisham-alhussain.com";
   const now = new Date();
 
   return [
@@ -14,5 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    // optionally: { url: `${base}/feed.xml`, lastModified: now, priority: 0.3 },
   ];
 }

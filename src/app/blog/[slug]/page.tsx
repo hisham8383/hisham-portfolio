@@ -1,8 +1,7 @@
-// src/app/blog/[slug]/page.tsx
 import React from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { posts, type BlogPostMeta } from "../page";
+import { posts, type BlogPostMeta } from "@/content/posts";
 
 const contentBySlug: Record<string, React.ReactNode> = {
   "rag-guardrails": (
@@ -43,7 +42,7 @@ export async function generateMetadata(
   const { slug } = await params;
   const meta = posts.find((p) => p.slug === slug);
   if (!meta) return {};
-  const base = "https://www.hisham-alhussain.com"; // adjust if using apex
+  const base = "https://www.hisham-alhussain.com";
   return {
     title: `${meta.title} · Hisham Alhussain`,
     description: meta.summary,
