@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import { posts } from "../blog/page";
+import { posts } from "../../content/posts"; // ← fixed path
 
 export async function GET() {
   const site = "https://www.hisham-alhussain.com";
-  const items = posts.map(
-    (p) => `
+  const items = posts
+    .map(
+      (p) => `
     <item>
       <title><![CDATA[${p.title}]]></title>
       <link>${site}/blog/${p.slug}</link>
@@ -12,7 +13,8 @@ export async function GET() {
       <pubDate>${new Date(p.date).toUTCString()}</pubDate>
       <description><![CDATA[${p.summary}]]></description>
     </item>`
-  ).join("");
+    )
+    .join("");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <rss version="2.0">

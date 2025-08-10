@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NotFound() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center">
@@ -5,7 +7,9 @@ export default function NotFound() {
       <p className="text-muted-foreground mb-6">
         The page you’re looking for doesn’t exist or was moved.
       </p>
-      <a href="/" className="underline underline-offset-4">Back to home</a>
+      <Link href="/" className="underline underline-offset-4">
+        Back to home
+      </Link>
     </main>
   );
 }
