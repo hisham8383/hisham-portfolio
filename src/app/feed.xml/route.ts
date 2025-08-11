@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { posts } from "../../content/posts"; // ← fixed path
 
 export async function GET() {
-  const site = "https://www.hisham-alhussain.com";
+  const site = "https://www.hisham-alhussain.dev";
   const items = posts
     .map(
       (p) => `

@@ -8,13 +8,13 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.hisham-alhussain.com"), // or your *.vercel.app while testing
+  metadataBase: new URL("https://www.hisham-alhussain.dev"), // or your *.vercel.app while testing
   title: "Hisham Alhussain · Senior Solutions Architect",
   description:
     "Portfolio of Hisham Alhussain – building GenAI assistants, AI/ML products, and data platforms.",
   openGraph: {
     type: "website",
-    url: "https://www.hisham-alhussain.com",
+    url: "https://www.hisham-alhussain.dev",
     title: "Hisham Alhussain · Senior Solutions Architect",
     description: "GenAI assistants, data platforms, and polished UIs.",
     images: [{ url: "/og.png", width: 1200, height: 630 }],

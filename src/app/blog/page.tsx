@@ -6,11 +6,11 @@ import { posts } from "@/content/posts";
 export const metadata: Metadata = {
   title: "Writing · Hisham Alhussain",
   description: "Articles and notes on GenAI, RAG, and shipping production-grade AI/ML systems.",
-  alternates: { canonical: "https://www.hisham-alhussain.com/blog" },
+  alternates: { canonical: "https://www.hisham-alhussain.dev/blog" },
   openGraph: {
     type: "website",
     title: "Writing · Hisham Alhussain",
-    url: "https://www.hisham-alhussain.com/blog",
+    url: "https://www.hisham-alhussain.dev/blog",
   },
 };
 

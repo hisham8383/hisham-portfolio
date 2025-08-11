@@ -46,7 +46,7 @@ export async function generateMetadata(
   const meta = posts.find((p) => p.slug === slug);
   if (!meta) return {};
 
-  const base = "https://www.hisham-alhussain.com"; // update if you use apex/no-www or a preview URL
+  const base = "https://www.hisham-alhussain.dev"; // update if you use apex/no-www or a preview URL
   return {
     title: `${meta.title} · Hisham Alhussain`,
     description: meta.summary,

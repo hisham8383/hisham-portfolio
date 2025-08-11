@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = "https://www.hisham-alhussain.com"; // update if you use apex/no-www
+  const base = "https://www.hisham-alhussain.dev"; // update if you use apex/no-www
   return {
     rules: [
       {

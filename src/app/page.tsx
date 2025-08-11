@@ -288,7 +288,7 @@ const About = () => (
             <Code2 className="h-4 w-4" /> GenAI + RAG in production
           </div>
           <div className="flex items-center gap-2">
-            <Briefcase className="h-4 w-4" /> 7+ years building software
+            <Briefcase className="h-4 w-4" /> 10+ years building software
           </div>
         </CardContent>
       </Card>
@@ -576,7 +576,7 @@ export default function Page() {
       "@context": "https://schema.org",
       "@type": "Person",
       name: "Hisham Alhussain",
-      url: "https://your-domain.com", // TODO: update to your real domain
+      url: "www.hisham-alhussain.dev", // TODO: update to your real domain
       sameAs: [
         "https://github.com/hisham8383",
         "https://www.linkedin.com/in/hishamalhussain/",

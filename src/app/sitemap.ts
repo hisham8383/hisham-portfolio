@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { posts } from "@/content/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.hisham-alhussain.com";
+  const base = "https://www.hisham-alhussain.dev";
   const now = new Date();
 
   return [
