@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion, useAnimation, useInView, useReducedMotion } from "framer-motion";
 import {
   Github,
   Linkedin,
@@ -22,6 +22,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Script from "next/script";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LazyInView } from "@/components/ui/lazy-in-view";
+import Link from "next/link";
+
 
 // ----------
 // Modern portfolio – Next.js (App Router) + Tailwind + shadcn/ui + Framer Motion
@@ -146,10 +149,14 @@ function useReveal() {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
+  const reduce = useReducedMotion();
+
   useEffect(() => {
+    if (reduce) return;
     if (isInView) controls.start({ opacity: 1, y: 0, transition: { duration: 0.6 } });
-  }, [isInView, controls]);
-  return { ref, controls };
+  }, [isInView, controls, reduce]);
+
+  return { ref, controls, reduce };
 }
 
 function Section({
@@ -161,13 +168,13 @@ function Section({
   children: React.ReactNode;
   className?: string;
 }) {
-  const { ref, controls } = useReveal();
+  const { ref, controls, reduce } = useReveal();
   return (
     <motion.section
       id={id}
       ref={ref}
-      initial={{ opacity: 0, y: 12 }}
-      animate={controls}
+      initial={reduce ? false : { opacity: 0, y: 12 }}
+      animate={reduce ? undefined : controls}
       className={`mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 ${className}`}
     >
       {children}
@@ -183,9 +190,9 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#" className="font-semibold tracking-tight">
-          Hisham Alhussain
-        </a>
+        <Link href="/" className="font-semibold tracking-tight">
+          Hisham-Alhussain.Dev
+        </Link>
 
         {/* Desktop nav + Theme toggle */}
         <nav className="hidden items-center gap-4 md:flex">
@@ -288,7 +295,7 @@ const About = () => (
             <Code2 className="h-4 w-4" /> GenAI + RAG in production
           </div>
           <div className="flex items-center gap-2">
-            <Briefcase className="h-4 w-4" /> 10+ years building software
+            <Briefcase className="h-4 w-4" /> 7+ years building software
           </div>
         </CardContent>
       </Card>
@@ -347,6 +354,7 @@ function GitHubRepos({ username = "hisham8383" }: { username?: string }) {
         const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`, {
           signal: controller.signal,
           headers: { Accept: "application/vnd.github+json" },
+          cache: "no-store",
         });
         if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
         const data = (await res.json()) as Repo[];
@@ -468,7 +476,10 @@ const Projects = () => (
     </div>
 
     <h3 className="mt-12 mb-4 text-xl font-semibold">Open Source Highlights</h3>
-    <GitHubRepos username="hisham8383" />
+    {/* Lazy-load GitHub repos to avoid chaining critical requests */}
+    <LazyInView>
+      <GitHubRepos username="hisham8383" />
+    </LazyInView>
   </Section>
 );
 
@@ -485,7 +496,7 @@ const Blog = () => (
           <CardContent>
             <p className="mb-4 text-muted-foreground">{post.summary}</p>
             <Button asChild variant="secondary" size="sm">
-              <a href={post.href}>Read</a>
+              <Link href={post.href}>Read</Link>
             </Button>
           </CardContent>
         </Card>
@@ -576,7 +587,7 @@ export default function Page() {
       "@context": "https://schema.org",
       "@type": "Person",
       name: "Hisham Alhussain",
-      url: "www.hisham-alhussain.dev", // TODO: update to your real domain
+      url: "https://www.hisham-alhussain.com",
       sameAs: [
         "https://github.com/hisham8383",
         "https://www.linkedin.com/in/hishamalhussain/",
