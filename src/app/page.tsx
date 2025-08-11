@@ -25,12 +25,12 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LazyInView } from "@/components/ui/lazy-in-view";
 import Link from "next/link";
 
-
 // ----------
 // Modern portfolio – Next.js (App Router) + Tailwind + shadcn/ui + Framer Motion
 // Inspired by brittanychiang.com
 // Owner: Hisham Alhussain
 // ----------
+
 
 type Repo = {
   id: number;
