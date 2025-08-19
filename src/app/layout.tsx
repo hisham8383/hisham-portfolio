@@ -3,18 +3,19 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import MouseGlow from "@/components/ui/mouse-glow";
 // import { Analytics } from "@vercel/analytics/react"; // optional
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.hisham-alhussain.dev"), // or your *.vercel.app while testing
+  metadataBase: new URL("https://www.hisham-alhussain.com"),
   title: "Hisham Alhussain · Senior Solutions Architect",
   description:
     "Portfolio of Hisham Alhussain – building GenAI assistants, AI/ML products, and data platforms.",
   openGraph: {
     type: "website",
-    url: "https://www.hisham-alhussain.dev",
+    url: "https://www.hisham-alhussain.com",
     title: "Hisham Alhussain · Senior Solutions Architect",
     description: "GenAI assistants, data platforms, and polished UIs.",
     images: [{ url: "/og.png", width: 1200, height: 630 }],
@@ -32,8 +33,8 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#0b0f19" },
   ],
-  // If you choose the Search Console meta-tag method instead of HTML file:
-  // verification: { google: "paste_your_token_here" },
+  // If you verify via meta tag later:
+  // verification: { google: "PASTE_TOKEN" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -47,8 +48,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange
         >
           {children}
+          <MouseGlow size={520} strength={0.28} />
+          {/* <Analytics /> */}
         </ThemeProvider>
-        {/* <Analytics /> */}
       </body>
     </html>
   );
