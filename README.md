@@ -79,6 +79,6 @@ Personal portfolio source — feel free to browse for inspiration, but please do
 
 <div align="center">
 
-**[hisham-alhussain.com](https://www.hisham-alhussain.com)**
+**[hisham-alhussain.dev](https://www.hisham-alhussain.dev)**
 
 </div>
