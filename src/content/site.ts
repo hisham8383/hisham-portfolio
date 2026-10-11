@@ -31,9 +31,9 @@ export const NAV = [
   { id: "contact", label: "Contact" },
 ] as const;
 
-// Headline proof. Sources: CV (EnviroGPT, onboarding) and the public WhatsApp agent eval results.
+// Headline proof. Sources: CV (ESRA reporting, onboarding) and the public WhatsApp agent eval results.
 export const STATS = [
-  { value: "4 wks → 1 hr", label: "compliance reporting with EnviroGPT at NEOM" },
+  { value: "4 wks → 1 hr", label: "monthly compliance reporting with ESRA at NEOM" },
   { value: "800", label: "contractors adopted it as the standard procedure" },
   { value: "138/138", label: "eval runs passed before every agent release" },
   { value: "6 → 2 wks", label: "developer onboarding after automation" },
@@ -64,7 +64,8 @@ export const SKILLS = [
 
 // Recruiter "quick view": the whole profile on one screen.
 export const QUICK_FACTS = [
-  "Built EnviroGPT at NEOM: compliance reporting cut from ~4 weeks to ~1 hour, adopted by all 800 contractors.",
+  "Built ESRA at NEOM: contractor compliance reporting cut from ~4 weeks to ~1 hour, adopted by all 800 contractors.",
+  "Built EnviroGPT, a RAG chatbot over NEOM's environmental documentation for the environment teams.",
   "Advised NEOM's Deputy CEO's Office; led delivery from requirements through adoption across AI, data and DevOps.",
   "Shipped an eval-gated bilingual WhatsApp agent: 138/138 eval runs at ~$0.003 per conversation.",
   "7+ years across IBM, NEOM and EPAM. M.S. Computer Science (KAUST), B.S. (UMass Amherst).",
@@ -125,7 +126,8 @@ export const EXPERIENCE: TimelineEntry[] = [
     summary:
       "Trusted technical advisor to the Deputy CEO's Office: scoped AI and data solutions and presented designs and decision-intelligence tools to senior leadership.",
     highlights: [
-      "Built EnviroGPT on a unified data ontology: compliance reporting went from ~4 weeks to ~1 hour, adopted by all 800 contractors.",
+      "Built ESRA, the app contractors use for monthly environmental submissions: reporting went from ~4 weeks to ~1 hour, adopted by all 800 contractors.",
+      "Built EnviroGPT, a RAG chatbot that answers NEOM environment teams' questions from indexed environmental documentation.",
       "Built LLM and RAG solutions in Palantir Foundry and led design of an environmental data platform unifying multiple waste and compliance systems.",
       "Designed GCP networking and storage for enterprise data platforms and set DevOps and CI/CD standards across internal apps.",
     ],

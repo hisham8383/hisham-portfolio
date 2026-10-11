@@ -94,62 +94,105 @@ I wanted an agent that could run the front desk end to end, and that a business 
 `,
   },
   {
-    slug: "envirogpt",
-    title: "EnviroGPT",
+    slug: "esra",
+    title: "ESRA: Environmental & Social Responsibility Application",
     org: "NEOM",
-    year: "2024–2026",
-    role: "Lead architect (50%) & hands-on builder (50%)",
+    role: "Lead architect (40%) & hands-on builder (60%)",
     summary:
-      "An agent-based environmental intelligence platform: one governed data model, automated pipelines, and dashboards plus chat for self-service insight.",
+      "The application NEOM's contractors use to submit their monthly environmental sheets, feeding validated data straight into compliance dashboards.",
     problem:
-      "Environmental data was siloed across teams. Leadership lacked consolidated, timely insight and analysts drowned in ad-hoc reporting requests.",
+      "Monthly compliance reporting depended on contractor spreadsheets, manual Excel consolidation and reconciliation, risking missed deadlines and inconsistent numbers in leadership meetings.",
     built:
-      "A unified platform that standardizes multi-team data into a governed ontology, automates processing, and adds an agent-based reasoning layer for summaries and Q&A.",
+      "Contractors submit monthly sheets through online forms into structured data objects, a standardized KPI model, validation pipelines and executive dashboards.",
     outcome:
-      "Compliance reporting went from ~4 weeks to ~1 hour and became the standard procedure for all 800 contractors. Other teams reused it as a reference architecture.",
+      "Compliance reporting went from ~4 weeks to ~1 hour and became the standard procedure for all 800 contractors.",
     metrics: [
-      { value: "4 wks → 1 hr", label: "compliance reporting" },
+      { value: "4 wks → 1 hr", label: "monthly compliance reporting" },
       { value: "800", label: "contractors on the standard procedure" },
-      { value: "~70%", label: "less manual analyst effort" },
-      { value: "Reused", label: "as a reference architecture" },
+      { value: "~90%", label: "less analyst effort" },
+      { value: "Template", label: "adopted by other sectors" },
     ],
-    tags: ["GenAI", "Agents", "RAG", "Ontology", "Palantir Foundry", "Dashboards"],
+    tags: ["Palantir Foundry", "Data pipelines", "Data quality", "KPI modeling", "Dashboards"],
     confidential: true,
     flow: [
-      { title: "Data sources", detail: "Environmental files from many teams" },
-      { title: "Governed data model", detail: "Shared definitions, compliance-ready" },
-      { title: "Automated pipelines", detail: "Validation, transforms, scheduling" },
-      { title: "AI reasoning layer", detail: "Agent-based summaries & Q&A" },
-      { title: "Insight delivery", detail: "Dashboards + conversational chat" },
+      { title: "Contractor submissions", detail: "Monthly sheets via online forms" },
+      { title: "Structured objects", detail: "Waste & environmental data" },
+      { title: "Standard KPI model", detail: "One definition per metric" },
+      { title: "Validation pipelines", detail: "Checks before anything is published" },
+      { title: "Executive dashboards", detail: "Single source of truth" },
     ],
-    qualities: ["Secure & governed", "Auditable", "Batch + near-real-time", "Reusable across domains"],
+    qualities: ["Compliance-sensitive", "Validated", "Auditable", "Template for other sectors"],
     body: `
 ## The problem
 
-Environmental data lived in silos across multiple teams and systems. Leadership couldn't get a timely, consolidated view, and analysts spent their weeks answering the same ad-hoc reporting requests by hand.
-
-The result was slower compliance reporting and slower executive decisions in an area where both carry real governance risk.
+Every month, NEOM's contractors report their environmental and waste data, and that reporting has a fixed deadline and a regulator behind it. It used to arrive as spreadsheets that analysts exported, consolidated and reconciled by hand in Excel. It took weeks, errors crept in, and different meetings sometimes saw different numbers.
 
 ## The approach
 
-I designed EnviroGPT as one platform rather than another report:
+ESRA (Environmental & Social Responsibility Application) moved reporting from a people-driven process to a system-driven one:
 
-- **Standardize first.** Structured files from many teams are ingested and normalized into a governed environmental data model with common definitions, so every downstream number means the same thing.
-- **Automate the middle.** Distributed transformation and orchestration layers handle validation and processing, on schedules and on events, supporting both batch and near-real-time use.
-- **Reason on top.** An agent-based AI layer handles summarization, question answering and insight generation over the governed model, not over raw files.
-- **Meet people where they are.** Operational and compliance dashboards for monitoring, plus a chat interface for exploratory questions.
+- Contractors submit their monthly sheets through **online forms** that write straight into structured data objects.
+- Those objects feed a **standardized environmental data model**, so every KPI has one definition across all submissions.
+- **Automated pipelines** validate, transform and propagate the data, and validation checks stop bad data before it reaches leadership.
+- The output is a set of **executive-ready dashboards** that serve as the authoritative view.
 
 ## My role
 
-Lead architect and hands-on builder in roughly equal parts, leading a small team. I owned the end-to-end architecture, the data model and ontology design, pipeline orchestration, and stakeholder alignment across compliance, analytics and operations.
+Architecture, end-to-end pipelines, KPI definition and standardization, and alignment with compliance and operations stakeholders so the system met regulatory expectations.
 
 ## Outcome
 
 - Compliance reporting went from **~4 weeks to ~1 hour**
 - Adopted as the **standard reporting procedure by all 800 contractors**
-- Manual analyst effort dropped by **~70%** as people self-served answers
-- Leadership got faster, more confident visibility into compliance
-- Other teams reused EnviroGPT as a **reference architecture** for new reporting and AI initiatives
+- Analyst effort dropped by **~90%**, with far fewer errors and inconsistencies
+- Leadership trusted the numbers, and the process became auditable
+- It became a dependency for other dashboards and a **template adopted by other sectors**
+
+*Details are kept high-level because this is internal NEOM work.*
+`,
+  },
+  {
+    slug: "envirogpt",
+    title: "EnviroGPT",
+    org: "NEOM",
+    year: "2024–2026",
+    role: "Architect & builder",
+    summary:
+      "A chatbot for NEOM's environment teams that answers questions from the organization's environmental documentation, using retrieval-augmented generation.",
+    problem:
+      "NEOM's environment teams relied on a large body of environmental documentation, and finding the right answer meant searching through files by hand.",
+    built:
+      "A RAG chatbot on Palantir Foundry: the relevant environmental documents are indexed, and each answer is generated from the passages retrieved for the question.",
+    outcome:
+      "Environment teams get answers grounded in NEOM's own documentation directly in chat, instead of digging through files.",
+    tags: ["GenAI", "RAG", "Chatbot", "Palantir Foundry"],
+    confidential: true,
+    flow: [
+      { title: "Environmental docs", detail: "Relevant documentation collected" },
+      { title: "Indexing", detail: "Documents indexed for search" },
+      { title: "Retrieval", detail: "Most relevant passages per question" },
+      { title: "LLM answer", detail: "Response generated from those passages" },
+      { title: "Chat", detail: "Used by NEOM environment teams" },
+    ],
+    qualities: ["Grounded in NEOM documents", "Built on Foundry"],
+    body: `
+## The problem
+
+NEOM's environment teams work with a large body of environmental documentation. Answering a question meant knowing which file to open and then searching through it by hand.
+
+## What I built
+
+EnviroGPT is a chatbot that answers those questions from the documentation itself:
+
+- **Indexing.** The relevant environmental documents are indexed so they can be searched.
+- **Retrieval.** For each question, the most relevant passages are pulled from the index.
+- **Generation.** An LLM writes the answer in chat from those passages, so responses are grounded in NEOM's own documents rather than general knowledge.
+
+It was built on Palantir Foundry alongside NEOM's other environmental data work.
+
+## Who used it
+
+NEOM's environment teams, as a faster way to get answers from their documentation.
 
 *Details are kept high-level because this is internal NEOM work.*
 `,
@@ -204,60 +247,6 @@ Mostly hands-on: I designed and built the ingestion pipeline, extraction and sem
 - Tender processing went from **weeks to hours**
 - Manual effort dropped by **~90%**, and evaluations became more accurate and consistent
 - It fed downstream analytics and became the **reference workflow** other teams reused for document-driven automation
-
-*Details are kept high-level because this is internal NEOM work.*
-`,
-  },
-  {
-    slug: "compliance-reporting",
-    title: "Automated Compliance Reporting",
-    org: "NEOM",
-    role: "Lead architect (40%) & hands-on builder (60%)",
-    summary:
-      "Monthly environmental compliance reporting moved from manual Excel consolidation to validated pipelines and one trusted dashboard.",
-    problem:
-      "A regulatory monthly report depended on Excel exports and manual reconciliation, risking missed deadlines and inconsistent numbers in leadership meetings.",
-    built:
-      "Contractor submissions flow through online forms into structured objects, a standardized KPI model, validation pipelines and executive dashboards.",
-    outcome:
-      "Monthly reporting went from weeks to ~4 hours with ~90% less analyst effort, and became a template adopted by other sectors.",
-    metrics: [
-      { value: "Weeks → 4 hrs", label: "monthly compliance report" },
-      { value: "~90%", label: "less analyst effort" },
-    ],
-    tags: ["Data pipelines", "Data quality", "KPI modeling", "Dashboards", "Foundry"],
-    confidential: true,
-    flow: [
-      { title: "Contractor forms", detail: "Structured waste & environmental data" },
-      { title: "Standard KPI model", detail: "One definition per metric" },
-      { title: "Validation pipelines", detail: "Checks before anything is published" },
-      { title: "Executive dashboards", detail: "Single source of truth" },
-    ],
-    qualities: ["Compliance-sensitive", "Validated", "Template for other sectors"],
-    body: `
-## The problem
-
-This report had a fixed monthly deadline and a regulator on the other end. It was assembled from manual Excel exports and reconciled by analysts, so it was slow, error-prone, and sometimes produced different numbers in different meetings.
-
-## The approach
-
-I designed a parallel, automated pipeline that moved reporting from a people-driven process to a system-driven one:
-
-- Contractors submit waste and environmental data through **online forms** that write straight into structured data objects.
-- Those objects feed a **standardized environmental data model**, so every KPI has one definition across all submissions.
-- **Automated pipelines** validate, transform and propagate the data, and validation checks stop bad data before it reaches leadership.
-- The output is a set of **executive-ready dashboards** that serve as the authoritative view.
-
-## My role
-
-Architecture, end-to-end pipelines, KPI definition and standardization, and alignment with compliance and operations stakeholders so the system met regulatory expectations.
-
-## Outcome
-
-- Reporting time went from **weeks to ~4 hours**, and analyst effort dropped by **~90%**
-- Far fewer errors and inconsistencies, and faster monthly close
-- Leadership trusted the numbers, and the process became auditable
-- It became a dependency for other dashboards and a **template adopted by other sectors**
 
 *Details are kept high-level because this is internal NEOM work.*
 `,
