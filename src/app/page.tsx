@@ -18,6 +18,7 @@ import {
   EMAIL,
   EXPERIENCE,
   NOW,
+  PRINCIPLES,
   PROFILE,
   SITE_URL,
   SKILLS,
@@ -289,11 +290,29 @@ const Work = () => {
   );
 };
 
+const Approach = () => (
+  <Reveal id="approach">
+    <SectionHeading index="04">How I work</SectionHeading>
+    <ol className="grid gap-4 sm:grid-cols-2">
+      {PRINCIPLES.map((p, i) => (
+        <li key={p.title} className="flex flex-col rounded-2xl border bg-card/40 p-5">
+          <span className="font-mono text-xs font-semibold text-primary">{String(i + 1).padStart(2, "0")}</span>
+          <h3 className="mt-2 font-display text-lg font-semibold leading-snug">{p.title}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
+          <p className="mt-4 border-l-2 border-primary/50 pl-3 text-sm leading-relaxed text-foreground/85">
+            {p.proof}
+          </p>
+        </li>
+      ))}
+    </ol>
+  </Reveal>
+);
+
 const Writing = () => {
   const [latest, ...rest] = posts;
   return (
     <Reveal id="writing">
-      <SectionHeading index="04">Writing</SectionHeading>
+      <SectionHeading index="05">Writing</SectionHeading>
       <Link
         href={`/blog/${latest.slug}`}
         className="group block rounded-2xl border bg-gradient-to-br from-primary/10 via-card/40 to-transparent p-6 transition hover:border-primary/40"
@@ -331,7 +350,7 @@ const Writing = () => {
 const Testimonials = () =>
   TESTIMONIALS.length === 0 ? null : (
     <Reveal id="testimonials">
-      <SectionHeading index="05">Kind words</SectionHeading>
+      <SectionHeading index="06">Kind words</SectionHeading>
       <ul className="grid gap-4">
         {TESTIMONIALS.map((t) => (
           <li key={t.name} className="rounded-2xl border bg-card/40 p-6">
@@ -348,7 +367,7 @@ const Testimonials = () =>
 
 const Contact = () => (
   <Reveal id="contact">
-    <SectionHeading index={TESTIMONIALS.length ? "06" : "05"}>Contact</SectionHeading>
+    <SectionHeading index={TESTIMONIALS.length ? "07" : "06"}>Contact</SectionHeading>
     <p className="mb-6 text-muted-foreground">Two ways to work together. Pick the one that fits.</p>
     <div className="grid gap-4 sm:grid-cols-2">
       <div className="flex flex-col rounded-2xl border bg-card/40 p-6">
@@ -445,6 +464,7 @@ export default function Page() {
           <About />
           <Experience />
           <Work />
+          <Approach />
           <Writing />
           <Testimonials />
           <Contact />

@@ -1,84 +1,115 @@
-<div align="center">
+# hisham-alhussain.dev
 
-# Hisham Alhussain
+The source for my personal site: portfolio, case studies, and a monthly blog on AI
+agents and LLM engineering. It is live at
+**[hisham-alhussain.dev](https://www.hisham-alhussain.dev)**.
 
-**Senior Software, Cloud & AI Engineer · AI Agents · LLM Systems · Data Platforms**
-
-[![Live Site](https://img.shields.io/badge/live-hisham--alhussain.dev-8b5cf6?style=for-the-badge)](https://www.hisham-alhussain.dev)
-[![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-
-<img src="./public/og.png" alt="Portfolio preview" width="700" />
-
-</div>
-
-<br />
-
-A fast, dark-themed personal portfolio and blog built with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, **shadcn/ui**, and **Framer Motion** — tuned for clean SEO, subtle motion, and near-perfect performance scores.
-
-## ✨ Features
+![Homepage preview](docs/preview.png)
 
 | | |
 |---|---|
-| 🎨 **Dark-first UI** | Polished dark theme by default with a light/dark toggle (`next-themes`) |
-| 🧠 **GitHub highlights** | Lazy-loaded "Open Source Highlights" pulled live from the GitHub API |
-| ✍️ **Blog** | File-based posts with dynamic routes, plus an auto-generated `/feed.xml` |
-| 🔍 **SEO baked in** | `metadata` API, `robots.txt`, `sitemap.xml`, and Open Graph / Twitter card images |
-| 🎬 **Motion, done right** | Framer Motion animations that respect `prefers-reduced-motion` |
-| ⚡ **Performance tuned** | Preconnects, lazy loading, optimized `lucide-react` imports, modern browser targets |
-| ♿ **Accessible** | Keyboard-friendly navigation and semantic markup throughout |
-
-## 🛠 Tech Stack
-
-- **Framework** — [Next.js 15](https://nextjs.org) (App Router)
-- **Language** — TypeScript
-- **UI** — Tailwind CSS, [shadcn/ui](https://ui.shadcn.com), [lucide-react](https://lucide.dev)
-- **Animation** — [Framer Motion](https://www.framer.com/motion)
-- **Theming** — [next-themes](https://github.com/pacocoursey/next-themes)
-- **Analytics** — Vercel Analytics
-- **Hosting** — Vercel
-
-## 📂 Project Structure
-
-```
-src/
-├─ app/              # Routes (App Router): home, blog, feed, sitemap, robots, OG image
-├─ components/ui/    # Reusable UI primitives (button, card, badge, theme toggle, ...)
-├─ content/          # Blog post data
-└─ lib/              # Shared utilities
-```
-
-## 🚀 Getting Started
-
-**Prerequisites:** Node.js 18–22 and npm (or pnpm/yarn)
-
-```bash
-git clone https://github.com/hisham8383/hisham-portfolio.git
-cd hisham-portfolio
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view it locally.
-
-### Scripts
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Start the dev server (Turbopack) |
-| `npm run build` | Build for production |
-| `npm run start` | Run the production build |
-| `npm run lint` | Lint the codebase |
-
-## 📄 License
-
-Personal portfolio source — feel free to browse for inspiration, but please don't redeploy it as your own.
+| **Framework** | Next.js 15 (App Router), React 19, TypeScript |
+| **Styling** | Tailwind CSS with shadcn/ui primitives, Inter + Space Grotesk via `next/font` |
+| **Content** | Typed TypeScript content files; no CMS and no database |
+| **Rendering** | Static pages at build time; GitHub data revalidated daily |
+| **Hosting** | Vercel, deployed from `main`, with a preview build for every branch |
 
 ---
 
-<div align="center">
+## What's on the site
 
-**[hisham-alhussain.dev](https://www.hisham-alhussain.dev)**
+- **Profile and proof.** A sticky profile column with my headshot, availability
+  and section navigation, next to headline results (ESRA's 4-week-to-1-hour
+  reporting, the 138/138 eval gate) instead of a list of adjectives.
+- **Experience timeline.** Dated roles from IBM through NEOM and EPAM, each
+  with measured outcomes.
+- **Case studies.** One page per major project (`/work/[slug]`) covering the
+  problem, what I built, the outcome and an architecture diagram. Internal NEOM
+  work is described at a high level without confidential data.
+- **How I work.** Four working principles, each backed by a specific result.
+- **Writing.** A post on the 1st of every month (`/blog/[slug]`), with reading
+  times and an RSS feed at `/feed.xml`.
+- **Two contact routes.** One for hiring (with a CV download) and one for
+  businesses that want a WhatsApp AI agent.
+- **Quick view.** A one-screen summary for recruiters, opened from the profile
+  column or the mobile menu.
 
-</div>
+## Design and engineering decisions
+
+**Content lives in data, not in components.** Everything a visitor reads is in
+[`src/content/`](src/content/): profile, experience and principles in
+`site.ts`, projects and case studies in `projects.ts`, and blog posts in
+`posts.ts` and `post-bodies.ts`. Updating the site means editing a typed object,
+and TypeScript catches a missing field before the build does.
+
+**Server components by default.** The homepage is a server component. Only the
+pieces that need the browser are client components: section tracking, the
+mobile menu, the quick view dialog and the theme toggle. Post bodies are kept
+out of the client bundle entirely.
+
+**No loading states for visitors.** The open source list is fetched from the
+GitHub API at build time and revalidated daily, with static fallbacks if the
+API is unavailable. A visitor never sees a spinner or an error card.
+
+**Motion that never hides content.** Sections fade in with CSS scroll-driven
+animations rather than JavaScript. Browsers without support, visitors with
+reduced motion turned on, and crawlers all get the content immediately.
+
+**Small, dependency-free pieces where they're enough.** Blog and case-study
+text uses a minimal markdown renderer (headings, lists, quotes, bold, italics,
+code and links) instead of a full MDX pipeline. Architecture diagrams are plain
+HTML and CSS, so they follow the light and dark themes automatically.
+
+**SEO and sharing.** Per-page metadata and canonical URLs, Open Graph images
+generated at `/api/og`, `sitemap.xml`, `robots.txt`, and `Person` JSON-LD.
+
+I used Claude Code as a coding assistant to speed up implementation.
+
+## Repository tour
+
+| Path | What's there |
+|---|---|
+| [`src/app/page.tsx`](src/app/page.tsx) | homepage: profile column, about, experience, work, approach, writing, contact |
+| [`src/app/work/[slug]/`](src/app/work/) | case-study pages |
+| [`src/app/blog/`](src/app/blog/) | blog index and post pages |
+| [`src/app/api/og/`](src/app/api/og/), [`feed.xml/`](src/app/feed.xml/), [`sitemap.ts`](src/app/sitemap.ts) | social images, RSS, sitemap |
+| [`src/content/`](src/content/) | all site copy: profile, experience, projects, case studies, posts |
+| [`src/components/site/`](src/components/site/) | section navigation, mobile header, quick view, flow diagrams, GitHub highlights |
+| [`src/components/blog/`](src/components/blog/) | markdown renderer for posts and case studies |
+| [`src/components/ui/`](src/components/ui/) | shadcn/ui primitives and the theme toggle |
+| [`public/`](public/) | headshot, CV PDF, icons and the default social image |
+
+## Running it locally
+
+Requires Node.js 18 or later.
+
+```sh
+git clone https://github.com/hisham8383/hisham-portfolio.git
+cd hisham-portfolio
+npm install
+npm run dev        # http://localhost:3000
+```
+
+| Task | Command |
+|---|---|
+| Dev server (Turbopack) | `npm run dev` |
+| Production build | `npm run build` |
+| Serve the production build | `npm run start` |
+| Lint | `npm run lint` |
+| Type check | `npx tsc --noEmit` |
+
+## Updating content
+
+| To change | Edit |
+|---|---|
+| Headline, stats, about, experience, "Now" | `src/content/site.ts` |
+| Projects and case studies | `src/content/projects.ts` |
+| A new blog post | add metadata to `src/content/posts.ts` and the body to `src/content/post-bodies.ts` |
+| The CV download | replace `public/Hisham-Alhussain-CV.pdf` |
+
+Pushing to `main` deploys to production.
+
+---
+
+Built by **Hisham Alhussain**. The code is public so you can see how it's put
+together; please don't redeploy it as your own site.

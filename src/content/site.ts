@@ -27,6 +27,7 @@ export const NAV = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "work", label: "Work" },
+  { id: "approach", label: "Approach" },
   { id: "writing", label: "Writing" },
   { id: "contact", label: "Contact" },
 ] as const;
@@ -160,6 +161,30 @@ export const EXPERIENCE: TimelineEntry[] = [
       "As an intern, shipped IBM Connections mobile features in React Native and improved app performance by 50%.",
     ],
     tags: ["React", "React Native", "Analytics", "DevOps"],
+  },
+];
+
+// "How I work": principles in my own voice, each backed by a verifiable result (CV / public repo).
+export const PRINCIPLES = [
+  {
+    title: "Front-load the risk",
+    text: "Under deadline pressure I go after the unknowns first, so surprises show up while there's still time to fix them.",
+    proof: "At EPAM I wrote connection tests early in the engagement that surfaced client-network issues before they could block deployment.",
+  },
+  {
+    title: "Quality is a release gate",
+    text: "Testing isn't a phase at the end. If the checks don't pass, it doesn't ship, however close the deadline is.",
+    proof: "My WhatsApp agent ships only when all 138 eval runs pass in Arabic and English, and its booking rules are enforced in code, not left to the prompt.",
+  },
+  {
+    title: "Build for adoption, not the demo",
+    text: "A system is done when people rely on it. I design with the end users from requirements through rollout.",
+    proof: "ESRA became the standard reporting procedure for all 800 NEOM contractors and cut compliance reporting from ~4 weeks to ~1 hour.",
+  },
+  {
+    title: "Make the next person faster",
+    text: "Automation, documentation and clear standards compound. I leave teams quicker than I found them.",
+    proof: "At NEOM I cut developer onboarding from 6 weeks to 2 and application publishing cycle times by 75%.",
   },
 ];
 
