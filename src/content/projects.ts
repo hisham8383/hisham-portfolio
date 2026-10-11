@@ -11,9 +11,10 @@ export type Project = {
   role: string;
   /** One-line pitch shown on cards. */
   summary: string;
-  problem: string;
-  built: string;
-  outcome: string;
+  // Required for case studies (projects with a body); optional for compact entries.
+  problem?: string;
+  built?: string;
+  outcome?: string;
   metrics?: { value: string; label: string }[];
   tags: string[];
   /** Real external links only. Confidential work shows a label instead. */
@@ -279,28 +280,13 @@ Architecture, end-to-end pipelines, KPI definition and standardization, and alig
     confidential: true,
   },
   {
-    slug: "pipeline-geolocation",
-    title: "Oil & Gas Pipeline Geolocation App",
+    slug: "nev-dashboards",
+    title: "NEV Environmental Dashboards",
     org: "NEOM",
     role: "Builder",
-    summary: "A Palantir Foundry application that maps pipeline routes and stations with operational dashboards.",
-    problem: "Pipeline routes and station data weren't visible in one place for operations teams.",
-    built: "A geospatial Foundry application with mapped routes, stations and operational dashboards.",
-    outcome: "Pipeline routes and stations mapped alongside operational dashboards in one Foundry app.",
-    tags: ["Palantir Foundry", "Geospatial", "Dashboards", "Oil & gas"],
-    confidential: true,
-  },
-  {
-    slug: "hr-agent",
-    title: "Enterprise HR Agent",
-    org: "EPAM Systems (client project)",
-    year: "2026",
-    role: "Engineer",
-    summary: "An LLM + RAG agent that answers HR policy questions, submits leave requests and generates employee certificates.",
-    problem: "Employees waited on HR for routine policy answers, leave requests and certificates.",
-    built: "A Node.js/TypeScript agent combining an LLM with RAG over HR policy, with tools for leave submission and certificate generation.",
-    outcome: "Policy questions, leave requests and certificates handled through one conversational agent.",
-    tags: ["LLM agents", "RAG", "Node.js", "TypeScript"],
+    summary:
+      "Interactive dashboards covering projects by status, compliance metrics, complaints and exceedances, regional breakdowns, and diesel generator locations.",
+    tags: ["React", "Data visualization", "Maps"],
     confidential: true,
   },
   {
@@ -309,11 +295,38 @@ Architecture, end-to-end pipelines, KPI definition and standardization, and alig
     org: "NEOM",
     role: "Builder",
     summary:
-      "Extracts content from PowerPoint decks with OCR fallback, slide-level QA and logging, productionized in Foundry.",
-    problem: "Key information was locked inside slide decks that no system could search.",
-    built: "A Python pipeline that extracts slide content, falls back to Tesseract OCR for image-only slides, and runs slide-level QA with structured logging.",
-    outcome: "Decks became searchable, structured data for downstream reporting and AI use.",
-    tags: ["Python", "OCR", "Tesseract", "Foundry"],
+      "End-to-end pipeline that extracts content from PowerPoint files, with OCR fallback, slide quality checks, and logging, productionized in Foundry.",
+    tags: ["Python", "pytesseract", "Tesseract", "Pillow", "Palantir Foundry"],
+    confidential: true,
+  },
+  {
+    slug: "capex-estimator",
+    title: "CAPEX Estimator for the Line FM",
+    org: "Palantir Foundry",
+    role: "Builder",
+    summary: "Foundry application for estimating capital expenditure (CAPEX) for the Line FM.",
+    tags: ["Palantir Foundry"],
+    confidential: true,
+  },
+  {
+    slug: "pipeline-geomap",
+    title: "Oil & Gas Pipeline Geomap",
+    org: "Confidential energy-sector client",
+    role: "Builder",
+    summary:
+      "Geospatial application mapping pipeline routes and stations, with operational dashboards. Client and project details withheld due to confidentiality.",
+    tags: ["Palantir Foundry", "Maps", "Dashboards"],
+    confidential: true,
+  },
+  {
+    slug: "hr-agent",
+    title: "Enterprise HR Agent",
+    org: "EPAM Systems (client project)",
+    year: "2026",
+    role: "Engineer",
+    summary:
+      "LLM + RAG agent (Node.js/TypeScript) that answers HR policy questions, submits employee leave requests, and generates certificates.",
+    tags: ["LLM agents", "RAG", "Node.js", "TypeScript"],
     confidential: true,
   },
 ];

@@ -113,6 +113,7 @@ export const EXPERIENCE: TimelineEntry[] = [
       "Built an HR agent (Node.js/TypeScript, LLM + RAG) that answers policy questions, submits leave requests and generates certificates.",
       "Implemented Redis Streams as a durable event bus with consumer groups and lag monitoring, and exposed Prometheus metrics for analytics.",
       "Shipped a Speech-to-Text feature, debugging it on the client's network through to production on GCP and OpenShift via ArgoCD.",
+      "Wrote Python connection tests early in the engagement that surfaced client-network issues before they could block deployment.",
     ],
     tags: ["LLM agents", "RAG", "Redis Streams", "PostgreSQL", "OpenShift", "ArgoCD"],
   },
@@ -125,7 +126,7 @@ export const EXPERIENCE: TimelineEntry[] = [
       "Trusted technical advisor to the Deputy CEO's Office: scoped AI and data solutions and presented designs and decision-intelligence tools to senior leadership.",
     highlights: [
       "Built EnviroGPT on a unified data ontology: compliance reporting went from ~4 weeks to ~1 hour, adopted by all 800 contractors.",
-      "Delivered an oil & gas pipeline geolocation app on Palantir Foundry, plus LLM and RAG solutions inside Foundry.",
+      "Built LLM and RAG solutions in Palantir Foundry and led design of an environmental data platform unifying multiple waste and compliance systems.",
       "Designed GCP networking and storage for enterprise data platforms and set DevOps and CI/CD standards across internal apps.",
     ],
     tags: ["GenAI", "RAG", "Palantir Foundry", "Ontology", "GCP"],

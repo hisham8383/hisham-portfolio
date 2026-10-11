@@ -53,10 +53,11 @@ function Tags({ items }: { items: string[] }) {
 }
 
 const Rail = () => (
-  <header className="pt-10 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[44%] lg:flex-col lg:justify-between lg:overflow-y-auto lg:py-20">
+  // -ml/pl gives the headshot glow room inside the scroll container, which would otherwise clip it.
+  <header className="pt-10 lg:sticky lg:top-0 lg:-ml-12 lg:flex lg:max-h-screen lg:w-[calc(44%+3rem)] lg:flex-col lg:justify-between lg:overflow-y-auto lg:py-20 lg:pl-12">
     <div>
       <div className="relative w-fit">
-        <div aria-hidden className="absolute -inset-3 rounded-[2rem] bg-primary/25 blur-2xl" />
+        <div aria-hidden className="absolute -inset-2 rounded-[2rem] bg-primary/25 blur-xl" />
         <Image
           src={PROFILE.headshot}
           alt={`Portrait of ${PROFILE.name}`}
@@ -267,10 +268,12 @@ const Work = () => {
               <span className="text-xs text-muted-foreground">{p.org}</span>
             </p>
             <p className="mt-1 text-sm text-muted-foreground">{p.summary}</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              <span className="font-medium text-foreground/80">Outcome: </span>
-              {p.outcome}
-            </p>
+            {p.outcome && (
+              <p className="mt-2 text-sm text-muted-foreground">
+                <span className="font-medium text-foreground/80">Outcome: </span>
+                {p.outcome}
+              </p>
+            )}
             <div className="mt-3">
               <Tags items={p.tags} />
             </div>
