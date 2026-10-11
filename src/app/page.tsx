@@ -24,6 +24,7 @@ import Script from "next/script";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LazyInView } from "@/components/ui/lazy-in-view";
 import Link from "next/link";
+import { posts, formatPostDate } from "@/content/posts";
 
 // ----------
 // Modern portfolio – Next.js (App Router) + Tailwind + shadcn/ui + Framer Motion
@@ -132,20 +133,7 @@ const FEATURED_PROJECTS = [
   },
 ];
 
-const POSTS = [
-  {
-    title: "RAG beyond the hype: production guardrails",
-    date: "2025-07-28",
-    summary: "A playbook for evaluation, retrieval quality, and observability when LLMs meet enterprise data.",
-    href: "/blog/rag-guardrails",
-  },
-  {
-    title: "From notebooks to platforms: hardening ML delivery",
-    date: "2025-05-14",
-    summary: "Pipelines, CI/CD, and model governance without slowing teams down.",
-    href: "/blog/hardening-ml-delivery",
-  },
-];
+const POSTS = posts.slice(0, 4);
 
 const TESTIMONIALS = [
   { quote: "Delivers fast, thinks system-wide, and sweats the details—rare blend of architect and builder.", author: "Engineering Lead, NEOM" },
@@ -496,19 +484,28 @@ const Blog = () => (
     <h2 className="mb-8 text-2xl font-semibold">Writing</h2>
     <div className="grid gap-6 sm:grid-cols-2">
       {POSTS.map((post) => (
-        <Card key={post.title} className="border-muted/60">
+        <Card key={post.slug} className="border-muted/60">
           <CardHeader>
             <CardTitle>{post.title}</CardTitle>
-            <CardDescription>{post.date}</CardDescription>
+            <CardDescription>
+              <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <p className="mb-4 text-muted-foreground">{post.summary}</p>
             <Button asChild variant="secondary" size="sm">
-              <Link href={post.href}>Read</Link>
+              <Link href={`/blog/${post.slug}`}>Read</Link>
             </Button>
           </CardContent>
         </Card>
       ))}
+    </div>
+    <div className="mt-8">
+      <Button asChild variant="outline">
+        <Link href="/blog">
+          View all posts <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
     </div>
   </Section>
 );

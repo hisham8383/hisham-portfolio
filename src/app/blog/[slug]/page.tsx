@@ -1,38 +1,11 @@
 // src/app/blog/[slug]/page.tsx
-import React from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 // Use a relative import to avoid alias issues on some builds
-import { posts, type BlogPostMeta } from "../../../content/posts";
-
-const contentBySlug: Record<string, React.ReactNode> = {
-  "rag-guardrails": (
-    <>
-      <p className="mb-4">
-        RAG in production is less about fancy retrieval tricks and more about guardrails:
-        evals, observability, and deterministic fallbacks when retrieval is weak.
-      </p>
-      <ul className="list-disc ml-6 space-y-2">
-        <li>Track retrieval quality (top-k hit rate, MRR) per index + query type.</li>
-        <li>Use domain schemas and chunking strategies that mirror how SMEs think.</li>
-        <li>Evaluate end-to-end with golden sets and regression tests.</li>
-      </ul>
-    </>
-  ),
-  "hardening-ml-delivery": (
-    <>
-      <p className="mb-4">
-        Shipping ML means boring engineering: CI/CD, data contracts, and explicit ownership—
-        without killing discovery work.
-      </p>
-      <ul className="list-disc ml-6 space-y-2">
-        <li>Separate labs vs. production repos; promote via PRs with checks.</li>
-        <li>Automate tests for data drift and feature compatibility.</li>
-        <li>Observability: traces from request → retrieval → model output.</li>
-      </ul>
-    </>
-  ),
-};
+import { posts, formatPostDate, type BlogPostMeta } from "../../../content/posts";
+import { postBodies } from "../../../content/post-bodies";
+import { PostBody } from "../../../components/blog/post-body";
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -53,6 +26,7 @@ export async function generateMetadata(
     alternates: { canonical: `${base}/blog/${meta.slug}` },
     openGraph: {
       type: "article",
+      publishedTime: meta.date,
       title: meta.title,
       description: meta.summary,
       url: `${base}/blog/${meta.slug}`,
@@ -73,10 +47,17 @@ export default async function BlogPost(
   if (!meta) return notFound();
 
   return (
-    <main className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-12 prose prose-neutral dark:prose-invert">
-      <h1 className="mb-2">{meta.title}</h1>
-      <p className="text-sm text-muted-foreground mb-8">{meta.date}</p>
-      <article>{contentBySlug[meta.slug]}</article>
+    <main className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
+      <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground">
+        ← All posts
+      </Link>
+      <h1 className="mt-6 mb-2 text-3xl font-semibold leading-tight">{meta.title}</h1>
+      <p className="text-sm text-muted-foreground mb-10">
+        <time dateTime={meta.date}>{formatPostDate(meta.date)}</time>
+      </p>
+      <article>
+        <PostBody source={postBodies[meta.slug] ?? ""} />
+      </article>
     </main>
   );
 }

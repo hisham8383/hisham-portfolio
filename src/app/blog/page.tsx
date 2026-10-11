@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { posts } from "@/content/posts";
+import { posts, formatPostDate } from "@/content/posts";
 
 export const metadata: Metadata = {
   title: "Writing · Hisham Alhussain",
@@ -30,7 +30,9 @@ export default function BlogIndex() {
                   {p.title}
                 </Link>
               </CardTitle>
-              <CardDescription>{p.date}</CardDescription>
+              <CardDescription>
+                <time dateTime={p.date}>{formatPostDate(p.date)}</time>
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">{p.summary}</p>
