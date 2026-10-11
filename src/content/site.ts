@@ -115,9 +115,9 @@ export const EXPERIENCE: TimelineEntry[] = [
       "Owned deployments to production on GCP and OpenShift with Docker, Terraform and ArgoCD (GitOps), including secrets, TLS and LDAP/SAML authentication.",
       "Developed the Speech-to-Text feature for the client's HR agent, debugging it on the client's network through to a working production deployment.",
       "Wrote Python connection tests early in the engagement that surfaced client-network issues before they could block deployment.",
-      "Implemented Redis Streams as a durable event bus with consumer groups and lag monitoring, and exposed Prometheus metrics for analytics.",
+      "Designed PostgreSQL schemas and data distribution, consolidated migrations, and automated their execution on service startup.",
     ],
-    tags: ["DevOps", "OpenShift", "ArgoCD", "Terraform", "Speech-to-Text", "Redis Streams"],
+    tags: ["DevOps", "OpenShift", "ArgoCD", "Terraform", "Speech-to-Text", "PostgreSQL"],
   },
   {
     period: "Jan 2024 — Jun 2026",
