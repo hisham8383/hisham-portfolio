@@ -110,14 +110,14 @@ export const EXPERIENCE: TimelineEntry[] = [
     org: "EPAM Systems",
     location: "Al Khobar, Saudi Arabia",
     summary:
-      "Client-facing engineer on enterprise LLM agents: ran daily requirements sessions and turned them into technical solutions for the team.",
+      "Led DevOps and deployment for a client's enterprise AI services, ran daily requirements sessions with the client, and developed backend features.",
     highlights: [
-      "Built an HR agent (Node.js/TypeScript, LLM + RAG) that answers policy questions, submits leave requests and generates certificates.",
-      "Implemented Redis Streams as a durable event bus with consumer groups and lag monitoring, and exposed Prometheus metrics for analytics.",
-      "Shipped a Speech-to-Text feature, debugging it on the client's network through to production on GCP and OpenShift via ArgoCD.",
+      "Owned deployments to production on GCP and OpenShift with Docker, Terraform and ArgoCD (GitOps), including secrets, TLS and LDAP/SAML authentication.",
+      "Developed the Speech-to-Text feature for the client's HR agent, debugging it on the client's network through to a working production deployment.",
       "Wrote Python connection tests early in the engagement that surfaced client-network issues before they could block deployment.",
+      "Implemented Redis Streams as a durable event bus with consumer groups and lag monitoring, and exposed Prometheus metrics for analytics.",
     ],
-    tags: ["LLM agents", "RAG", "Redis Streams", "PostgreSQL", "OpenShift", "ArgoCD"],
+    tags: ["DevOps", "OpenShift", "ArgoCD", "Terraform", "Speech-to-Text", "Redis Streams"],
   },
   {
     period: "Jan 2024 — Jun 2026",

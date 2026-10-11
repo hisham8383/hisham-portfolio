@@ -309,13 +309,13 @@ Mostly hands-on: I designed and built the ingestion pipeline, extraction and sem
   },
   {
     slug: "hr-agent",
-    title: "Enterprise HR Agent",
+    title: "Speech-to-Text for an Enterprise HR Agent",
     org: "EPAM Systems (client project)",
     year: "2026",
-    role: "Engineer",
+    role: "DevOps lead & STT feature developer",
     summary:
-      "LLM + RAG agent (Node.js/TypeScript) that answers HR policy questions, submits employee leave requests, and generates certificates.",
-    tags: ["LLM agents", "RAG", "Node.js", "TypeScript"],
+      "Developed the Speech-to-Text feature for a client's HR agent and owned its deployment to production on GCP and OpenShift.",
+    tags: ["Speech-to-Text", "DevOps", "OpenShift", "ArgoCD"],
     confidential: true,
   },
 ];
