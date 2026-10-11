@@ -112,7 +112,7 @@ I wanted an agent that could run the front desk end to end, and that a business 
       { value: "~90%", label: "less analyst effort" },
       { value: "Template", label: "adopted by other sectors" },
     ],
-    tags: ["Palantir Foundry", "Data pipelines", "Data quality", "KPI modeling", "Dashboards"],
+    tags: ["Online forms", "Data pipelines", "Data quality", "KPI modeling", "Dashboards"],
     confidential: true,
     flow: [
       { title: "Contractor submissions", detail: "Monthly sheets via online forms" },
