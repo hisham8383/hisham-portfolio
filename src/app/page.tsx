@@ -100,6 +100,13 @@ const EXPERIENCE = [
 
 const FEATURED_PROJECTS = [
   {
+    title: "WhatsApp AI Front-Desk Agent",
+    description:
+      "Bilingual (Arabic/English, Gulf dialect) AI agent for WhatsApp Business: answers FAQs, books and reschedules appointments, sends reminders, follows up with leads, and hands off to staff. Code-enforced booking guardrails, exactly-once Postgres scheduler, and an eval gate passing 138/138 at ~$0.003 per conversation.",
+    tags: ["AI Agents", "Claude API", "Python", "FastAPI", "PostgreSQL", "Evals"],
+    links: [{ href: "https://github.com/hisham8383/whatsapp-ai-agent", label: "GitHub" }],
+  },
+  {
     title: "EnviroGPT",
     description:
       "A domain-tuned assistant for environmental operations: compliance insights, diesel generator maps, incidents & inspections—all wired to an ontology.",
@@ -464,6 +471,7 @@ const Projects = () => (
                 <a
                   key={l.label}
                   href={l.href}
+                  {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
                   className="inline-flex items-center text-sm text-primary underline underline-offset-4 hover:no-underline"
                 >
                   {l.label} <ExternalLink className="ml-1 h-4 w-4" />
