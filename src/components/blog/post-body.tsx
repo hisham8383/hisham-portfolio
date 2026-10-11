@@ -3,12 +3,15 @@ import React from "react";
 // Minimal renderer for the markdown subset used in src/content/post-bodies.ts.
 // Tailwind's typography plugin isn't installed, so styles are explicit here.
 
-const INLINE = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)\s]+\))/g;
+const INLINE = /(\*\*[^*]+\*\*|\*[^*\s][^*]*\*|`[^`]+`|\[[^\]]+\]\([^)\s]+\))/g;
 
 function renderInline(text: string): React.ReactNode[] {
   return text.split(INLINE).map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return <strong key={i} className="font-semibold text-foreground">{part.slice(2, -2)}</strong>;
+    }
+    if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
+      return <em key={i} className="text-muted-foreground">{part.slice(1, -1)}</em>;
     }
     if (part.startsWith("`") && part.endsWith("`")) {
       return <code key={i} className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.9em]">{part.slice(1, -1)}</code>;

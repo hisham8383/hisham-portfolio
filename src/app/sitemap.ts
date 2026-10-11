@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/content/posts";
+import { CASE_STUDIES } from "@/content/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.hisham-alhussain.dev";
@@ -13,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: p.date,
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...CASE_STUDIES.map((p) => ({
+      url: `${base}/work/${p.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
     // optionally: { url: `${base}/feed.xml`, lastModified: now, priority: 0.3 },
   ];

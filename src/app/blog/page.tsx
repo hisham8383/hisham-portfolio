@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { posts, formatPostDate } from "@/content/posts";
+import { readingMinutes } from "@/content/reading-time";
+import { SubHeader } from "@/components/site/sub-header";
 
 export const metadata: Metadata = {
   title: "Writing · Hisham Alhussain",
@@ -16,8 +18,11 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   return (
+    <>
+    <SubHeader />
     <main className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-semibold mb-8">Writing</h1>
+      <h1 className="font-display text-3xl font-bold tracking-tight">Writing</h1>
+      <p className="mt-2 mb-8 text-muted-foreground">A post on the 1st of every month about agents, LLM systems, and shipping AI that works.</p>
       <div className="grid gap-6 sm:grid-cols-2">
         {posts.map((p) => (
           <Card key={p.slug} className="border-muted/60">
@@ -31,7 +36,7 @@ export default function BlogIndex() {
                 </Link>
               </CardTitle>
               <CardDescription>
-                <time dateTime={p.date}>{formatPostDate(p.date)}</time>
+                <time dateTime={p.date}>{formatPostDate(p.date)}</time> · {readingMinutes(p.slug)} min read
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -41,5 +46,6 @@ export default function BlogIndex() {
         ))}
       </div>
     </main>
+    </>
   );
 }
