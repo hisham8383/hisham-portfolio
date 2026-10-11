@@ -3,17 +3,17 @@
 export const SITE_URL = "https://www.hisham-alhussain.dev";
 export const EMAIL = "hisham83835@gmail.com";
 
-// Set to "/Hisham-Alhussain-CV.pdf" once the file is in public/. CV buttons stay hidden while null.
-export const CV_URL: string | null = null;
+// CV buttons render only when this is set.
+export const CV_URL: string | null = "/Hisham-Alhussain-CV.pdf";
 
 export const PROFILE = {
   name: "Hisham Alhussain",
-  title: "Senior Solutions Architect",
+  title: "Senior Software, Cloud & AI Engineer",
   focus: "AI agents · LLM systems · Data platforms",
   location: "Dammam, Saudi Arabia",
   headshot: "/headshot.jpg",
   tagline:
-    "I build AI agents and data platforms that hold up in production, from enterprise compliance at NEOM to front-desk agents for small businesses on WhatsApp.",
+    "I build AI agents and data platforms that hold up in production, from compliance systems used by 800 contractors at NEOM to front-desk agents for small businesses on WhatsApp.",
   availability: "Open to senior AI roles & select consulting",
 };
 
@@ -31,17 +31,17 @@ export const NAV = [
   { id: "contact", label: "Contact" },
 ] as const;
 
-// Public, verifiable numbers only (from the open-source WhatsApp agent's eval results).
+// Headline proof. Sources: CV (EnviroGPT, onboarding) and the public WhatsApp agent eval results.
 export const STATS = [
-  { value: "138/138", label: "eval cases passed before every release" },
-  { value: "~$0.003", label: "LLM cost per customer conversation" },
-  { value: "2.8s", label: "median agent reply time" },
-  { value: "7+ yrs", label: "shipping production software" },
+  { value: "4 wks → 1 hr", label: "compliance reporting with EnviroGPT at NEOM" },
+  { value: "800", label: "contractors adopted it as the standard procedure" },
+  { value: "138/138", label: "eval runs passed before every agent release" },
+  { value: "6 → 2 wks", label: "developer onboarding after automation" },
 ];
 
 export const ABOUT = [
-  "I design systems end to end: ingestion, data modeling, retrieval, agents, UX, and the delivery platform underneath. Most of my work sits where messy real-world data meets people who need answers from it quickly.",
-  "At NEOM / TONOMUS I lead architecture for AI and data platforms used in environmental compliance, procurement and executive reporting. On the side I build bilingual (Arabic/English) WhatsApp agents for clinics, salons and law firms, and I write a monthly post about what I'm learning.",
+  "I design systems end to end: ingestion, data modeling, retrieval, agents, UX, and the cloud platform underneath. Most of my work sits where messy real-world data meets people who need answers from it quickly.",
+  "I spent five years at NEOM, growing from DevOps to Senior Solution Architect and advising the Deputy CEO's Office on AI and data. Before that I built software at IBM in the US, and studied computer science at UMass Amherst and KAUST. Today I build bilingual (Arabic/English) WhatsApp agents for small businesses, and I write a monthly post about what I'm learning.",
 ];
 
 export const SKILLS = [
@@ -50,24 +50,32 @@ export const SKILLS = [
   "LLM agents",
   "RAG",
   "Evals",
-  "Claude API",
+  "Palantir Foundry",
   "FastAPI",
   "PostgreSQL",
-  "Palantir Foundry",
-  "Next.js",
-  "Docker",
+  "Redis",
+  "GCP",
+  "OCI",
   "Kubernetes",
-  "CI/CD & IaC",
+  "OpenShift",
+  "Terraform",
+  "ArgoCD",
 ];
 
 // Recruiter "quick view": the whole profile on one screen.
 export const QUICK_FACTS = [
-  "Lead architect for agent-based AI and data platforms at NEOM / TONOMUS, reused by other teams as reference architectures.",
-  "Built and shipped an eval-gated bilingual WhatsApp agent: 138/138 eval runs, ~$0.003 per conversation.",
-  "Hands-on across the stack: pipelines and ontologies, LLM agents and RAG, CI/CD, IaC and Kubernetes.",
+  "Built EnviroGPT at NEOM: compliance reporting cut from ~4 weeks to ~1 hour, adopted by all 800 contractors.",
+  "Advised NEOM's Deputy CEO's Office; led delivery from requirements through adoption across AI, data and DevOps.",
+  "Shipped an eval-gated bilingual WhatsApp agent: 138/138 eval runs at ~$0.003 per conversation.",
+  "7+ years across IBM, NEOM and EPAM. M.S. Computer Science (KAUST), B.S. (UMass Amherst).",
 ];
 
-export const CREDENTIALS = ["Palantir Foundry certified", "Computer Science graduate"];
+export const CREDENTIALS = [
+  "M.S. Computer Science, KAUST",
+  "B.S. Computer Science, UMass Amherst",
+  "Palantir Foundry Data Engineer",
+  "Palantir Foundry App Developer",
+];
 
 export type TimelineEntry = {
   period: string;
@@ -83,7 +91,8 @@ export const EXPERIENCE: TimelineEntry[] = [
   {
     period: "2026 — Present",
     role: "Independent AI Engineer",
-    org: "Independent · AI agents for small businesses",
+    org: "AI agents for small businesses",
+    location: "Dammam, Saudi Arabia",
     summary:
       "Design, build and run WhatsApp front-desk agents for clinics, salons and law firms in Saudi Arabia.",
     highlights: [
@@ -94,31 +103,60 @@ export const EXPERIENCE: TimelineEntry[] = [
     tags: ["Claude API", "FastAPI", "PostgreSQL", "WhatsApp Cloud API"],
   },
   {
-    period: "2023 — Present",
-    role: "Senior Solutions Architect",
-    org: "NEOM / TONOMUS",
-    location: "Dammam, Saudi Arabia",
+    period: "Jun 2026 — Sep 2026",
+    role: "Senior Systems Engineer",
+    org: "EPAM Systems",
+    location: "Al Khobar, Saudi Arabia",
     summary:
-      "Lead architect and hands-on builder for AI and data platforms across environmental compliance, procurement and executive reporting.",
+      "Client-facing engineer on enterprise LLM agents: ran daily requirements sessions and turned them into technical solutions for the team.",
     highlights: [
-      "Designed EnviroGPT, an agent-based environmental intelligence platform later adopted as a reference architecture by other teams.",
-      "Built Tender360, turning unstructured tender documents into decision-ready summaries for procurement committees.",
-      "Replaced manual Excel consolidation for monthly compliance reporting with validated, automated pipelines and a single source of truth.",
+      "Built an HR agent (Node.js/TypeScript, LLM + RAG) that answers policy questions, submits leave requests and generates certificates.",
+      "Implemented Redis Streams as a durable event bus with consumer groups and lag monitoring, and exposed Prometheus metrics for analytics.",
+      "Shipped a Speech-to-Text feature, debugging it on the client's network through to production on GCP and OpenShift via ArgoCD.",
     ],
-    tags: ["GenAI", "Agents", "Palantir Foundry", "Ontology", "Dashboards"],
+    tags: ["LLM agents", "RAG", "Redis Streams", "PostgreSQL", "OpenShift", "ArgoCD"],
   },
   {
-    period: "2021 — 2023",
-    role: "Software Engineer",
-    org: "Palantir Foundry projects",
-    location: "Saudi Arabia",
+    period: "Jan 2024 — Jun 2026",
+    role: "Senior Solution Architect",
+    org: "NEOM",
+    location: "Tabuk, Saudi Arabia",
     summary:
-      "Built data pipelines, ontologies and operational apps on Palantir Foundry for analytics at scale.",
+      "Trusted technical advisor to the Deputy CEO's Office: scoped AI and data solutions and presented designs and decision-intelligence tools to senior leadership.",
     highlights: [
-      "Implemented Foundry pipelines, data models and operational applications for domain teams.",
-      "Partnered with domain experts to turn ambiguous requirements into software people used daily.",
+      "Built EnviroGPT on a unified data ontology: compliance reporting went from ~4 weeks to ~1 hour, adopted by all 800 contractors.",
+      "Delivered an oil & gas pipeline geolocation app on Palantir Foundry, plus LLM and RAG solutions inside Foundry.",
+      "Designed GCP networking and storage for enterprise data platforms and set DevOps and CI/CD standards across internal apps.",
     ],
-    tags: ["Foundry", "Python", "Data pipelines", "Operational apps"],
+    tags: ["GenAI", "RAG", "Palantir Foundry", "Ontology", "GCP"],
+  },
+  {
+    period: "Jul 2021 — Dec 2023",
+    role: "DevOps Specialist → Senior DevOps Specialist",
+    org: "NEOM",
+    location: "Tabuk, Saudi Arabia",
+    summary:
+      "Built the delivery and service platforms NEOM's internal teams ran on, and led a team of 10 consultants.",
+    highlights: [
+      "Delivered a centralized helpdesk platform that improved resolution times by 150%.",
+      "Cut developer onboarding from 6 weeks to 2 and application publishing cycle times by 75%.",
+      "Automated OCI provisioning, integrated CI/CD across teams, and ran licensing and compliance for 1,000+ users.",
+    ],
+    tags: ["CI/CD", "OCI", "Kubernetes", "Automation", "Team lead"],
+  },
+  {
+    period: "2017 — 2019",
+    role: "Software Developer",
+    org: "IBM",
+    location: "Austin, TX & Durham, NC, USA",
+    summary:
+      "Built enterprise reporting features and mobile apps, starting as an intern and returning full time.",
+    highlights: [
+      "Built React UI components and real-time analytics integrations for enterprise reporting.",
+      "Automated compliance and security scans in IBM DevOps Insights, improving audit efficiency by 50%.",
+      "As an intern, shipped IBM Connections mobile features in React Native and improved app performance by 50%.",
+    ],
+    tags: ["React", "React Native", "Analytics", "DevOps"],
   },
 ];
 
@@ -134,5 +172,5 @@ export const NOW = {
 
 export type Testimonial = { quote: string; name: string; title: string };
 
-// Only named quotes, used with permission. The section is hidden while this is empty.
+// Only real quotes the person has approved for publication. The section is hidden while this is empty.
 export const TESTIMONIALS: Testimonial[] = [];

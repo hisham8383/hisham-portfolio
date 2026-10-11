@@ -2,7 +2,7 @@
 
 # Hisham Alhussain
 
-**Senior Solutions Architect · GenAI Assistants · AI/ML Products · Data Platforms**
+**Senior Software, Cloud & AI Engineer · AI Agents · LLM Systems · Data Platforms**
 
 [![Live Site](https://img.shields.io/badge/live-hisham--alhussain.dev-8b5cf6?style=for-the-badge)](https://www.hisham-alhussain.dev)
 [![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)

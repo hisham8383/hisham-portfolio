@@ -11,13 +11,13 @@ const display = Space_Grotesk({ subsets: ["latin"], display: "swap", variable: "
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hisham-alhussain.dev"),
-  title: "Hisham Alhussain · Senior Solutions Architect",
+  title: "Hisham Alhussain · Senior Software, Cloud & AI Engineer",
   description:
     "Hisham Alhussain builds AI agents, LLM systems and data platforms that hold up in production, from enterprise compliance at NEOM to bilingual WhatsApp agents.",
   openGraph: {
     type: "website",
     url: "https://www.hisham-alhussain.dev",
-    title: "Hisham Alhussain · Senior Solutions Architect",
+    title: "Hisham Alhussain · Senior Software, Cloud & AI Engineer",
     description: "AI agents, LLM systems and data platforms that hold up in production.",
     images: [{ url: "/og.png", width: 1200, height: 630 }],
   },

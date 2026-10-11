@@ -105,11 +105,8 @@ const Rail = () => (
       </div>
     </div>
 
-    <div className="mt-8 flex items-center gap-4 lg:mt-10">
+    <div className="mt-8 lg:mt-10">
       <SocialLinks />
-      <div className="hidden lg:block">
-        <ThemeToggle />
-      </div>
     </div>
   </header>
 );
@@ -417,7 +414,10 @@ export default function Page() {
     url: SITE_URL,
     image: `${SITE_URL}${PROFILE.headshot}`,
     jobTitle: PROFILE.title,
-    worksFor: { "@type": "Organization", name: "NEOM / TONOMUS" },
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "King Abdullah University of Science and Technology (KAUST)" },
+      { "@type": "CollegeOrUniversity", name: "University of Massachusetts Amherst" },
+    ],
     address: { "@type": "PostalAddress", addressLocality: "Dammam", addressCountry: "SA" },
     sameAs: ["https://github.com/hisham8383", "https://www.linkedin.com/in/hishamalhussain/"],
   };
@@ -432,6 +432,10 @@ export default function Page() {
         Skip to content
       </a>
       <MobileHeader />
+      {/* Desktop theme toggle, pinned to the top-right corner */}
+      <div className="fixed right-6 top-5 z-50 hidden h-9 w-9 rounded-full border bg-background/70 backdrop-blur lg:block">
+        <ThemeToggle />
+      </div>
       <div className="mx-auto min-h-screen max-w-6xl px-4 sm:px-6 lg:flex lg:justify-between lg:gap-16 lg:px-12">
         <Rail />
         <main className="space-y-24 pb-16 pt-20 lg:w-[56%] lg:py-20">

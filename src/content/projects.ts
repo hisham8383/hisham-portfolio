@@ -95,7 +95,8 @@ I wanted an agent that could run the front desk end to end, and that a business 
   {
     slug: "envirogpt",
     title: "EnviroGPT",
-    org: "NEOM / TONOMUS",
+    org: "NEOM",
+    year: "2024–2026",
     role: "Lead architect (50%) & hands-on builder (50%)",
     summary:
       "An agent-based environmental intelligence platform: one governed data model, automated pipelines, and dashboards plus chat for self-service insight.",
@@ -104,7 +105,13 @@ I wanted an agent that could run the front desk end to end, and that a business 
     built:
       "A unified platform that standardizes multi-team data into a governed ontology, automates processing, and adds an agent-based reasoning layer for summaries and Q&A.",
     outcome:
-      "Reporting cycles shortened dramatically and recurring analyst work dropped sharply. Other teams adopted it as a reference architecture.",
+      "Compliance reporting went from ~4 weeks to ~1 hour and became the standard procedure for all 800 contractors. Other teams reused it as a reference architecture.",
+    metrics: [
+      { value: "4 wks → 1 hr", label: "compliance reporting" },
+      { value: "800", label: "contractors on the standard procedure" },
+      { value: "~70%", label: "less manual analyst effort" },
+      { value: "Reused", label: "as a reference architecture" },
+    ],
     tags: ["GenAI", "Agents", "RAG", "Ontology", "Palantir Foundry", "Dashboards"],
     confidential: true,
     flow: [
@@ -137,8 +144,9 @@ Lead architect and hands-on builder in roughly equal parts, leading a small team
 
 ## Outcome
 
-- Reporting cycles went from weeks of manual consolidation to a largely automated flow
-- Recurring analyst workload dropped sharply as people self-served answers
+- Compliance reporting went from **~4 weeks to ~1 hour**
+- Adopted as the **standard reporting procedure by all 800 contractors**
+- Manual analyst effort dropped by **~70%** as people self-served answers
 - Leadership got faster, more confident visibility into compliance
 - Other teams reused EnviroGPT as a **reference architecture** for new reporting and AI initiatives
 
@@ -148,7 +156,7 @@ Lead architect and hands-on builder in roughly equal parts, leading a small team
   {
     slug: "tender360",
     title: "Tender360",
-    org: "NEOM / TONOMUS",
+    org: "NEOM",
     role: "Lead architect (30%) & hands-on builder (70%)",
     summary:
       "Automated tender intelligence: unstructured bid documents become searchable data and executive-ready summaries of key points, risks and comparisons.",
@@ -157,7 +165,11 @@ Lead architect and hands-on builder in roughly equal parts, leading a small team
     built:
       "An event-triggered document pipeline with chunking, embeddings and semantic search, plus an AI summarization layer feeding reports and dashboards.",
     outcome:
-      "Tender review went from weeks of reading to fast, consistent summaries. Other teams reused it as the reference workflow for document automation.",
+      "Tender processing went from weeks to hours with ~90% less manual effort. Other teams reused it as the reference workflow for document automation.",
+    metrics: [
+      { value: "Weeks → hours", label: "tender processing time" },
+      { value: "~90%", label: "less manual effort" },
+    ],
     tags: ["RAG", "Embeddings", "Semantic search", "LLM summarization", "Dashboards"],
     confidential: true,
     flow: [
@@ -188,8 +200,8 @@ Mostly hands-on: I designed and built the ingestion pipeline, extraction and sem
 
 ## Outcome
 
-- Tender processing went from weeks of manual review to fast, consistent summaries
-- Manual effort dropped substantially and evaluations became more consistent
+- Tender processing went from **weeks to hours**
+- Manual effort dropped by **~90%**, and evaluations became more accurate and consistent
 - It fed downstream analytics and became the **reference workflow** other teams reused for document-driven automation
 
 *Details are kept high-level because this is internal NEOM work.*
@@ -198,7 +210,7 @@ Mostly hands-on: I designed and built the ingestion pipeline, extraction and sem
   {
     slug: "compliance-reporting",
     title: "Automated Compliance Reporting",
-    org: "NEOM / TONOMUS",
+    org: "NEOM",
     role: "Lead architect (40%) & hands-on builder (60%)",
     summary:
       "Monthly environmental compliance reporting moved from manual Excel consolidation to validated pipelines and one trusted dashboard.",
@@ -207,7 +219,11 @@ Mostly hands-on: I designed and built the ingestion pipeline, extraction and sem
     built:
       "Contractor submissions flow through online forms into structured objects, a standardized KPI model, validation pipelines and executive dashboards.",
     outcome:
-      "Monthly close became predictable and auditable with a single source of truth. The design was adopted as a template by other sectors.",
+      "Monthly reporting went from weeks to ~4 hours with ~90% less analyst effort, and became a template adopted by other sectors.",
+    metrics: [
+      { value: "Weeks → 4 hrs", label: "monthly compliance report" },
+      { value: "~90%", label: "less analyst effort" },
+    ],
     tags: ["Data pipelines", "Data quality", "KPI modeling", "Dashboards", "Foundry"],
     confidential: true,
     flow: [
@@ -237,7 +253,7 @@ Architecture, end-to-end pipelines, KPI definition and standardization, and alig
 
 ## Outcome
 
-- Reporting time and analyst effort dropped dramatically
+- Reporting time went from **weeks to ~4 hours**, and analyst effort dropped by **~90%**
 - Far fewer errors and inconsistencies, and faster monthly close
 - Leadership trusted the numbers, and the process became auditable
 - It became a dependency for other dashboards and a **template adopted by other sectors**
@@ -248,8 +264,9 @@ Architecture, end-to-end pipelines, KPI definition and standardization, and alig
   {
     slug: "delivery-platform",
     title: "Delivery Platform: CI/CD, IaC & Kubernetes",
-    org: "Enterprise platform work",
-    role: "Platform engineer",
+    org: "NEOM",
+    year: "2021–2023",
+    role: "DevOps Specialist → Senior DevOps Specialist",
     summary:
       "Standardized pipelines, infrastructure as code and Kubernetes so teams ship on a predictable cadence with governance built in.",
     problem:
@@ -257,14 +274,39 @@ Architecture, end-to-end pipelines, KPI definition and standardization, and alig
     built:
       "CI/CD with tests, image builds, security scanning and gated infra changes; declarative IaC for every environment; a shared Kubernetes runtime with central ingress, secrets, RBAC and observability.",
     outcome:
-      "Much more frequent, lower-risk releases, consistent environments across teams, and faster onboarding for new developers.",
+      "Releases went from every ~6 months to every 2 weeks, onboarding from 6 weeks to 2, publishing cycle times dropped 75%, and helpdesk resolution times improved 150%.",
     tags: ["CI/CD", "Infrastructure as Code", "Kubernetes", "Observability", "RBAC"],
+    confidential: true,
+  },
+  {
+    slug: "pipeline-geolocation",
+    title: "Oil & Gas Pipeline Geolocation App",
+    org: "NEOM",
+    role: "Builder",
+    summary: "A Palantir Foundry application that maps pipeline routes and stations with operational dashboards.",
+    problem: "Pipeline routes and station data weren't visible in one place for operations teams.",
+    built: "A geospatial Foundry application with mapped routes, stations and operational dashboards.",
+    outcome: "Pipeline routes and stations mapped alongside operational dashboards in one Foundry app.",
+    tags: ["Palantir Foundry", "Geospatial", "Dashboards", "Oil & gas"],
+    confidential: true,
+  },
+  {
+    slug: "hr-agent",
+    title: "Enterprise HR Agent",
+    org: "EPAM Systems (client project)",
+    year: "2026",
+    role: "Engineer",
+    summary: "An LLM + RAG agent that answers HR policy questions, submits leave requests and generates employee certificates.",
+    problem: "Employees waited on HR for routine policy answers, leave requests and certificates.",
+    built: "A Node.js/TypeScript agent combining an LLM with RAG over HR policy, with tools for leave submission and certificate generation.",
+    outcome: "Policy questions, leave requests and certificates handled through one conversational agent.",
+    tags: ["LLM agents", "RAG", "Node.js", "TypeScript"],
     confidential: true,
   },
   {
     slug: "presentation-parsing",
     title: "Presentation Parsing Pipeline",
-    org: "NEOM / TONOMUS",
+    org: "NEOM",
     role: "Builder",
     summary:
       "Extracts content from PowerPoint decks with OCR fallback, slide-level QA and logging, productionized in Foundry.",
